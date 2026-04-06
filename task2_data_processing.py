@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from datetime import datetime
 
 # Read the file from the Task 1
 file_path = "data/trends_20260405.json"
@@ -57,8 +58,10 @@ for col in text_cols:
     df[col] = df[col].str.strip()
 
 # 6. Save to CSV
+# 1. Get the current date in YYYYMMDD format
+current_date = datetime.now().strftime('%Y%m%d')
 os.makedirs("data", exist_ok=True)
-output_file = "data/trends_clean.csv"
+output_file = f"data/trends_clean_{current_date}.csv"
 df.to_csv(output_file, index=False)
 print(f"\nSaved {len(df)} rows to {output_file}")
 
